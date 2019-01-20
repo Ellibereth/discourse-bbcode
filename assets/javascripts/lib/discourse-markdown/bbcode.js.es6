@@ -133,6 +133,18 @@ function setupMarkdownIt(md) {
     },
   });
 
+   ruler.push('reset', {
+    tag: 'reset',
+    replace: (state, tagInfo, content) => {
+      let token;
+      token = state.push('span_open', 'span', 1);
+      token.attrs = [['class', 'reset']];
+      token = state.push('text', '', 0);
+      token.content = 'RESET: ' + content;
+      token = state.push('span_close', 'span', -1);
+      return true;
+    },
+  });
 
 
   ['left','right','center'].forEach(dir=>{
@@ -310,6 +322,11 @@ export function setup(helper) {
   replaceBBCode('uv', contents => {
     console.log(contents);
     return ['span', { 'class': 'vote' }, "UNVOTE: "].concat(contents);
+  });
+  
+  replaceBBCode('reset', contents => {
+    console.log(contents);
+    return ['span', { 'class': 'vote' }, "RESET: "].concat(contents);
   });
 
   ["left", "center", "right"].forEach(direction => {
