@@ -64,6 +64,13 @@ describe PrettyText do
 
     expect(cooked).to eq(html)
   end
+  
+  it 'can apply reset bbcode' do
+    cooked = PrettyText.cook "[reset]vote[/reset]"
+    html = '<p><span class="highlight"><b>RESET: vote</b></span></p>'
+
+    expect(cooked).to eq(html)
+  end
 
   it 'can apply left center and right' do
     markdown = <<~MD
