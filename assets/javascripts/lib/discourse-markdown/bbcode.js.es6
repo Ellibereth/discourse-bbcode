@@ -146,6 +146,10 @@ function setupMarkdownIt(md) {
     },
   });
 
+md.block.bbcode.ruler.push('votecount',{
+   tag: 'votecount',
+   wrap: 'div.votecount'
+});
 
   ['left','right','center'].forEach(dir=>{
     md.block.bbcode.ruler.push(dir, {
@@ -266,6 +270,8 @@ export function setup(helper) {
     'span.vote',
     'div.v',
     'span.v',
+    'div.votecount',
+    'span.votecount',
     'div.highlight.bbcode-b',
     'span.highlight.bbcode-b',
     'div.sepquote',
@@ -328,6 +334,8 @@ export function setup(helper) {
     console.log(contents);
     return ['span', { 'class': 'vote' }, "RESET "].concat(contents);
   });
+  
+  replaceBBCode('votecount', contents => [['div'].concat(contents)]);
 
   ["left", "center", "right"].forEach(direction => {
     replaceBBCode(direction, contents => ['div', {'style': "text-align:" + direction}].concat(contents));
