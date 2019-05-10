@@ -114,7 +114,7 @@ function setupMarkdownIt(md) {
       token = state.push('span_open', 'span', 1);
       token.attrs = [['class', 'vote']];
       token = state.push('text', '', 0);
-      token.content = 'UNVOTE' + content;
+      token.content = 'UNVOTE ' + content;
       token = state.push('span_close', 'span', -1);
       return true;
     },
@@ -127,7 +127,7 @@ function setupMarkdownIt(md) {
       token = state.push('span_open', 'span', 1);
       token.attrs = [['class', 'vote']];
       token = state.push('text', '', 0);
-      token.content = 'UNVOTE' + content;
+      token.content = 'UNVOTE ' + content;
       token = state.push('span_close', 'span', -1);
       return true;
     },
