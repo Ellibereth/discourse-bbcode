@@ -88,7 +88,7 @@ function setupMarkdownIt(md) {
       token = state.push('span_open', 'span', 1);
       token.attrs = [['class', 'vote']];
       token = state.push('text', '', 0);
-      token.content = 'VOTE: ' + content;
+      token.content = 'VOTE: @' + content;
       token = state.push('span_close', 'span', -1);
       return true;
     },
@@ -101,7 +101,7 @@ function setupMarkdownIt(md) {
       token = state.push('span_open', 'span', 1);
       token.attrs = [['class', 'vote']];
       token = state.push('text', '', 0);
-      token.content = 'VOTE: ' + content;
+      token.content = 'VOTE: @' + content;
       token = state.push('span_close', 'span', -1);
       return true;
     },
@@ -312,12 +312,12 @@ export function setup(helper) {
 
   replaceBBCode('vote', contents => {
     console.log(contents);
-    return ['span', { 'class': 'vote' }, "VOTE: "].concat(contents);
+    return ['span', { 'class': 'vote' }, "VOTE: @"].concat(contents);
   });
 
   replaceBBCode('v', contents => {
     console.log(contents);
-    return ['span', { 'class': 'vote' }, "VOTE: "].concat(contents);
+    return ['span', { 'class': 'vote' }, "VOTE: @"].concat(contents);
   });
 
   replaceBBCode('unvote', contents => {
