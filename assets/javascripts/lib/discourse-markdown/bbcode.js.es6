@@ -160,6 +160,21 @@ md.block.bbcode.ruler.push('votecount',{
       }
     });
   });
+  
+md.block.bbcode.ruler.push('alive',{
+   tag: 'alive',
+   wrap: 'div.alive'
+});
+
+  ['left','right','center'].forEach(dir=>{
+    md.block.bbcode.ruler.push(dir, {
+      tag: dir,
+      wrap: function(token) {
+        token.attrs = [['style', 'text-align:' + dir]];
+        return true;
+      }
+    });
+  });
 
   md.block.bbcode.ruler.push('indent', {
     tag: 'indent',
@@ -272,6 +287,8 @@ export function setup(helper) {
     'span.v',
     'div.votecount',
     'span.votecount',
+    'div.alive',
+    'span.alive',
     'div.highlight.bbcode-b',
     'span.highlight.bbcode-b',
     'div.sepquote',
@@ -336,6 +353,8 @@ export function setup(helper) {
   });
   
   replaceBBCode('votecount', contents => [['div'].concat(contents)]);
+  
+  replaceBBCode('alive', contents => [['div'].concat(contents)]);
 
   ["left", "center", "right"].forEach(direction => {
     replaceBBCode(direction, contents => ['div', {'style': "text-align:" + direction}].concat(contents));
