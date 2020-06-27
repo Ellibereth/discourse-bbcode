@@ -165,6 +165,11 @@ md.block.bbcode.ruler.push('alive',{
    tag: 'alive',
    wrap: 'div.alive'
 });
+  
+md.block.bbcode.ruler.push('flips',{
+   tag: 'flips',
+   wrap: 'div.flips'
+});
 
   ['left','right','center'].forEach(dir=>{
     md.block.bbcode.ruler.push(dir, {
@@ -289,6 +294,8 @@ export function setup(helper) {
     'span.votecount',
     'div.alive',
     'span.alive',
+    'div.flips',
+    'span.flips',
     'div.highlight.bbcode-b',
     'span.highlight.bbcode-b',
     'div.sepquote',
@@ -355,6 +362,8 @@ export function setup(helper) {
   replaceBBCode('votecount', contents => [['div'].concat(contents)]);
   
   replaceBBCode('alive', contents => [['div'].concat(contents)]);
+  
+  replaceBBCode('flips', contents => [['div'].concat(contents)]);
 
   ["left", "center", "right"].forEach(direction => {
     replaceBBCode(direction, contents => ['div', {'style': "text-align:" + direction}].concat(contents));
